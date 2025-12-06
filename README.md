@@ -74,39 +74,20 @@ jobs:
           terraform apply -auto-approve
       
 
-                   SCREENSHOTS
-API Test on Browser                   
-![API test on a browser](screenshots/API test on a broswer.png)
+| Feature                                    | Screenshot                                                                                                    |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------- |
+| API Test on Browser                        | ![API test on a browser](screemshots/API%20test%20on%20a%20broswer.png)                                       |
+| Application Load Balancer – Creation Error | ![Application load balancer creation error](screemshots/application%20load%20balancer%20creation%20error.png) |
+| Classic Load Balancer                      | ![Classic load balancer](screemshots/classic%20load%20balancer.png)                                           |
+| DynamoDB Console                           | ![DynamoDB console](screemshots/Dynamodb%20console.png)                                                       |
+| EC2 Console                                | ![EC2 console](screemshots/ec2-console.png)                                                                   |
+| S3 Console                                 | ![S3 console](screemshots/s3%20console.png)                                                                   |
+| Target Group & Registered Instance         | ![Target group and registered instance](screemshots/target%20group_and%20regsitered%20instance.png)           |
+| Target Instance                            | ![Target instance](screemshots/target%20instance.png)                                                         |
+| Test on EC2                                | ![Test on EC2](screemshots/test%20on%20EC2.png)                                                               |
+| VPC Console Extension                      | ![VPC console extension](screemshots/VPC%20console%20extention.png)                                           |
+| VPC Console                                | ![VPC console](screemshots/VPC%20console.png)                                                                 |
 
-Application Load Balancer – Creation Error
-![Application load balancer creation error](screenshots/application load balancer creation error.png)
-
-Classic Load Balancer
-![Classic load balancer](screenshots/classic load balancer.png)
-
-DynamoDB Console
-![DynamoDB console](screenshots/Dynamodb console.png)
-
-EC2 Console
-![EC2 console](screenshots/ec2-console.png)
-
-S3 Console
-![S3 console](screenshots/s3 console.png)
-
-Target Group & Registered Instance
-![Target group and registered instance](screenshots/target group_and registered instance.png)
-
-Target Instance
-![Target instance](screenshots/target instance.png)
-
-Test on EC2
-![Test on EC2](screenshots/test on EC2.png)
-
-VPC Console Extension
-![VPC console extension](screenshots/VPC console extention.png)
-
-VPC Console
-![VPC console](screenshots/VPC console.png)
 
 
 
