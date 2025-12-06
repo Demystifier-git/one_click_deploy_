@@ -1,63 +1,94 @@
-A one-click deployment that provisions a complete AWS architecture running a simple REST API on private EC2 instances behind an Application Load Balancer (ALB) using Terraform.
+One-Click AWS Deployment for a REST API
 
-This solution is fully repeatable, secure, and follows best practices (no public EC2, SSM access, least-privilege IAM).
+This project provides a one-click deployment solution that provisions a complete AWS architecture to run a simple REST API. The API runs on private EC2 instances behind a Classic Load Balancer (CLB), with Terraform managing the infrastructure.
 
-                      Architecture Overview
+The deployment is fully repeatable, secure, and follows AWS best practices, including: no public EC2 instances, secure SSM access, and least-privilege IAM policies.
+                      
 
+ARCHITECTURE OVERVIEW
 Client → CLB (Public Subnets) → Target Group → ASG → EC2 (Private Subnets)
                            ↑
                  Security Groups
                            ↓
 Private EC2 → NAT Gateway → Internet Gateway
 
+
+Key points:
+
+EC2 instances are deployed in private subnets for security.
+
+Traffic is routed through the Classic Load Balancer (CLB).
+
+NAT Gateway and Internet Gateway enable outbound access for private instances.
+
+Security groups enforce strict access: only the CLB can access EC2 instances.
+
+
+
 AWS Resources Created
 
-VPC (CIDR: 10.0.0.0/16)
+VPC: CIDR 10.0.0.0/16
 
-2 Public Subnets + 2 Private Subnets
+Subnets: 2 public and 2 private
+
 Internet Gateway
 
 NAT Gateway
+
 Route Tables
 
-classic Load Balancer (HTTP/HTTPS) (i used classic load balancer because my aws acccount could not create application load balancer due to the fact that my account is less than 72hours old)
+Classic Load Balancer (HTTP/HTTPS)
 
+Note: A Classic Load Balancer is used because this AWS account is less than 72 hours old and cannot create an Application Load Balancer.
 
-Launch Template (EC2 with user-data)
-Auto Scaling Group (Private Subnets)
+Launch Template: EC2 instances with user-data scripts
+
+Auto Scaling Group: EC2 instances in private subnets
 
 IAM Role for EC2:
+
 AmazonSSMManagedInstanceCore
+
 CloudWatchAgentServerPolicy
+
 S3 bucket access
 
 Security Groups:
 
-CLB SG → allow 80/443 from anywhere
-EC2 SG → allow only from ELB SG
+CLB SG → allows HTTP/HTTPS from anywhere
 
-dynamo DB for statelocking of terraform statefiles (security best practice)
-s3 bucket for storing terraform statefiles and also the zipped app folder
+EC2 SG → allows traffic only from the CLB SG
 
-                  DEPLOYMENT STEPS
-         Cd into scripts and run ./deploy.sh
+DynamoDB table for Terraform state locking (security best practice)
 
-                  TEARDOWN STEP
-        Cd into scripts and run ./destroy.sh
+S3 bucket for storing Terraform state files and zipped application files
 
-                  TESTING STEPS
+                  
+
+DEPLOYMENT STEPS
+Cd into scripts and run ./deploy.sh
+
+
+TEARDOWN STEP
+Cd into scripts and run ./destroy.sh
+
+                  
+                  
+TESTING STEPS
 check pm2 status (check server status on EC2)
 curl http://0.0.0.0:8080 (test locally on EC2)
 http://my-classic-lb-564157245.us-east-1.elb.amazonaws.com/ (test API from a broswer)
 
-              
-                Github actions workflow (optional)
+
+
+
+Github actions workflow (optional)
 name: Deploy to AWS
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
