@@ -1,4 +1,4 @@
-One-Click AWS Deployment for a REST API
+                                                        One-Click AWS Deployment for a REST API
 
 This project provides a one-click deployment solution that provisions a complete AWS architecture to run a simple REST API. The API runs on private EC2 instances behind a Classic Load Balancer (CLB), with Terraform managing the infrastructure.
 
